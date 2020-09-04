@@ -1,0 +1,25 @@
+{
+    "require": {
+        "twig/twig": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9",
+        "nunomaduro/collision": "^4.2",
+        "smoothy-cloud/application-template-validator": "@dev",
+        "cheprasov/php-redis-client": "^1.10"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../../application-template-validator",
+            "options": {
+                "symlink": false
+            }
+        }
+    ]
+}
