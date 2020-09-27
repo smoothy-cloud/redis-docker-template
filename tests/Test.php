@@ -26,7 +26,7 @@ class Test extends TemplateTest
         $this->deployApplication($variables);
 
         $redis = ClientFactory::create([
-            'server' => '127.0.0.1:10000',
+            'server' => '127.0.0.1:50000',
             'version' => '5.0',
             'password' => 'secret',
         ]);
@@ -48,7 +48,7 @@ class Test extends TemplateTest
         $this->deployApplication($variables);
 
         $redis = ClientFactory::create([
-            'server' => '127.0.0.1:10000',
+            'server' => '127.0.0.1:50000',
             'version' => '6.0',
             'password' => 'secret',
         ]);

@@ -41,11 +41,11 @@ form:
         minimum: 1024
         default: 2048
       - variable: cpus
-        label: CPUs
+        label: CPU
         hint: >
-          The number of CPU cores allocated to the Redis database.
+          The number of CPU millicores allocated to the Redis database.
         type: number
-        default: 1
+        default: 1000
 
 deployment:
   - resource: volume
@@ -53,13 +53,6 @@ deployment:
   - resource: container
     name: redis
     image: bitnami/redis:{{ variable.redis_version }}
-    endpoints:
-      - name: redis_internal
-        type: container_port
-        port: 6379
-      - name: redis_external
-        type: host_port
-        port: 6379
     volume_mounts:
       - volume: "{{ volume.redis_data }}"
         mount_path: /bitnami/redis/data
@@ -68,14 +61,13 @@ deployment:
         value: "{{ variable.redis_password }}"
     memory: "{{ variable.memory }}"
     cpus: "{{ variable.cpus }}"
+  - resource: service
+    name: redis
+    title: Redis database
+    container: "{{ container.redis }}"
+    port: 6379
 
 interface:
-  endpoints:
-    show:
-      - title: Internal endpoint
-        endpoint: "{{ endpoint.redis_internal }}"
-      - title: External endpoint
-        endpoint: "{{ endpoint.redis_external }}"
   logs:
     - title: Redis logs
       container: "{{ container.redis }}"
