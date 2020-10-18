@@ -54,7 +54,7 @@ deployment:
     name: redis
     image: bitnami/redis:{{ variable.redis_version }}
     volume_mounts:
-      - volume: "{{ volume.redis_data }}"
+      - volume: "{* volume.redis_data *}"
         mount_path: /bitnami/redis/data
     environment:
       - key: REDIS_PASSWORD
@@ -64,10 +64,10 @@ deployment:
   - resource: service
     name: redis
     title: Redis database
-    container: "{{ container.redis }}"
+    container: "{* container.redis *}"
     port: 6379
 
 interface:
   logs:
     - title: Redis logs
-      container: "{{ container.redis }}"
+      container: "{* container.redis *}"
