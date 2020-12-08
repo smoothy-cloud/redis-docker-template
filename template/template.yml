@@ -61,7 +61,7 @@ deployment:
         value: "{{ variable.redis_password }}"
     memory: "{{ variable.memory }}"
     cpus: "{{ variable.cpus }}"
-  - resource: service
+  - resource: entrypoint
     name: redis
     title: Redis database
     container: "{* container.redis *}"
